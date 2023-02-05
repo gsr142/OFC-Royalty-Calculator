@@ -5,12 +5,13 @@ bottom_df = pd.read_excel("ofcroyalties.xlsx", "BottomHand")
 middle_df = pd.read_excel("ofcroyalties.xlsx", "MiddleHand")
 top_df = pd.read_excel("ofcroyalties.xlsx", "TopHand")
 
+
 class NumPlayers:
     def __init__(self, num_players,
                  p1_top, p1_middle, p1_bottom,
                  p2_top, p2_middle, p2_bottom,
                  p3_top, p3_middle, p3_bottom,
-                 p4_top, p4_middle, p4_bottom,):
+                 p4_top, p4_middle, p4_bottom):
         self.num_players = num_players
         self.p1_top = p1_top
         self.p1_middle = p1_middle
@@ -24,6 +25,7 @@ class NumPlayers:
         self.p4_top = p4_top
         self.p4_middle = p4_middle
         self.p4_bottom = p4_bottom
+
     def four_players(self):
         col1, col2, col3, col4 = st.columns(4)
 
@@ -224,5 +226,4 @@ class NumPlayers:
 
         player_hands = [p1_top, p1_middle, p1_bottom, p2_top, p2_middle, p2_bottom]
         return player_hands
-
 
