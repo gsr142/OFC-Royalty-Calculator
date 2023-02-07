@@ -1,10 +1,14 @@
 import streamlit as st
 import pandas as pd
-# Load the data frames
+# Load the data frames and create dictionaries for bottom, middle, and top hands
 bottom_df = pd.read_excel("ofcroyalties.xlsx", "BottomHand")
-middle_df = pd.read_excel("ofcroyalties.xlsx", "MiddleHand")
-top_df = pd.read_excel("ofcroyalties.xlsx", "TopHand")
+bottom_vals_dict = bottom_df.set_index('HAND VALUE').to_dict()['UNITS']
 
+middle_df = pd.read_excel("ofcroyalties.xlsx", "MiddleHand")
+middle_vals_dict = middle_df.set_index('HAND VALUE').to_dict()['UNITS']
+
+top_df = pd.read_excel("ofcroyalties.xlsx", "TopHand")
+top_vals_dict = top_df.set_index('HAND VALUE').to_dict()['UNITS']
 
 class NumPlayers:
     def __init__(self, num_players,
@@ -31,84 +35,27 @@ class NumPlayers:
 
         with col1:
             st.subheader("Player 1 Hands")
-            p1_top = st.selectbox("Player 1 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p1_middle = st.selectbox("Player 1 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-
-            p1_bottom = st.selectbox("Player 1 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p1_top = st.selectbox("Player 1 Top Hand", tuple(top_vals_dict),key=1)
+            p1_middle = st.selectbox("Player 1 Middle Hand", tuple(middle_vals_dict),key=2)
+            p1_bottom = st.selectbox("Player 1 Bottom Hand", tuple(bottom_vals_dict),key=3)
 
         with col2:
             st.subheader("Player 2 Hands")
-            p2_top = st.selectbox("Player 2 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p2_middle = st.selectbox("Player 2 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-            p2_bottom = st.selectbox("Player 2 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p2_top = st.selectbox("Player 2 Top Hand", tuple(top_vals_dict),key=4)
+            p2_middle = st.selectbox("Player 2 Middle Hand", tuple(middle_vals_dict),key=5)
+            p2_bottom = st.selectbox("Player 2 Bottom Hand", tuple(bottom_vals_dict),key=6)
 
         with col3:
             st.subheader("Player 3 Hands")
-            p3_top = st.selectbox("Player 3 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p3_middle = st.selectbox("Player 3 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-            p3_bottom = st.selectbox("Player 3 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p3_top = st.selectbox("Player 3 Top Hand", tuple(top_vals_dict),key=7)
+            p3_middle = st.selectbox("Player 3 Middle Hand", tuple(middle_vals_dict),key=8)
+            p3_bottom = st.selectbox("Player 3 Bottom Hand", tuple(bottom_vals_dict),key=9)
 
         with col4:
             st.subheader("Player 4 Hands")
-            p4_top = st.selectbox("Player 4 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p4_middle = st.selectbox("Player 4 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-            p4_bottom = st.selectbox("Player 4 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p4_top = st.selectbox("Player 4 Top Hand", tuple(top_vals_dict),key=10)
+            p4_middle = st.selectbox("Player 4 Middle Hand", tuple(middle_vals_dict),key=11)
+            p4_bottom = st.selectbox("Player 4 Bottom Hand", tuple(bottom_vals_dict),key=12)
 
         player_hands = [p1_top, p1_middle, p1_bottom, p2_top, p2_middle, p2_bottom,
                         p3_top, p3_middle, p3_bottom, p4_top, p4_middle, p4_bottom]
@@ -119,63 +66,21 @@ class NumPlayers:
 
         with col1:
             st.subheader("Player 1 Hands")
-            p1_top = st.selectbox("Player 1 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p1_middle = st.selectbox("Player 1 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-            p1_bottom = st.selectbox("Player 1 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p1_top = st.selectbox("Player 1 Top Hand", tuple(top_vals_dict), key=13)
+            p1_middle = st.selectbox("Player 1 Middle Hand", tuple(middle_vals_dict), key=14)
+            p1_bottom = st.selectbox("Player 1 Bottom Hand", tuple(bottom_vals_dict), key=15)
 
         with col2:
             st.subheader("Player 2 Hands")
-            p2_top = st.selectbox("Player 2 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p2_middle = st.selectbox("Player 2 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-            p2_bottom = st.selectbox("Player 2 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p2_top = st.selectbox("Player 2 Top Hand", tuple(top_vals_dict), key=16)
+            p2_middle = st.selectbox("Player 2 Middle Hand", tuple(middle_vals_dict), key=17)
+            p2_bottom = st.selectbox("Player 2 Bottom Hand", tuple(bottom_vals_dict), key=18)
 
         with col3:
             st.subheader("Player 3 Hands")
-            p3_top = st.selectbox("Player 3 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p3_middle = st.selectbox("Player 3 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-            p3_bottom = st.selectbox("Player 3 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p3_top = st.selectbox("Player 3 Top Hand", tuple(top_vals_dict), key=19)
+            p3_middle = st.selectbox("Player 3 Middle Hand", tuple(middle_vals_dict), key=20)
+            p3_bottom = st.selectbox("Player 3 Bottom Hand", tuple(bottom_vals_dict), key=21)
 
         player_hands = [p1_top, p1_middle, p1_bottom, p2_top, p2_middle, p2_bottom,
                         p3_top, p3_middle, p3_bottom]
@@ -186,44 +91,17 @@ class NumPlayers:
 
         with col1:
             st.subheader("Player 1 Hands")
-            p1_top = st.selectbox("Player 1 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p1_middle = st.selectbox("Player 1 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-            p1_bottom = st.selectbox("Player 1 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p1_top = st.selectbox("Player 1 Top Hand", tuple(top_vals_dict), key=43)
+            p1_middle = st.selectbox("Player 1 Middle Hand", tuple(middle_vals_dict), key=23)
+            p1_bottom = st.selectbox("Player 1 Bottom Hand", tuple(bottom_vals_dict), key=24)
 
         with col2:
             st.subheader("Player 2 Hands")
-            p2_top = st.selectbox("Player 2 Top Hand",
-                                  ("Non-scoring Hand", "Sixes", "Sevens", "Eights", "Nines",
-                                   "Tens", "Jacks", "Queens", "Kings",
-                                   "Aces", "Trip Deuces", "Trip Threes",
-                                   "Trip Fours", "Trip Fives", "Trip Sixes",
-                                   "Trip Sevens", "Trip Eights", "Trip Nines",
-                                   "Trip Tens", "Trip Jacks", "Trip Queens",
-                                   "Trip Kings", "Trip Aces"))
-            p2_middle = st.selectbox("Player 2 Middle Hand",
-                                     ("Non-scoring Hand", "Set", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush", "Nine Low", "Eight Low",
-                                      "Seven Low", "Wheel"))
-            p2_bottom = st.selectbox("Player 2 Bottom Hand",
-                                     ("Non-scoring Hand", "Straight", "Flush",
-                                      "Full House", "Quads", "Straight Flush",
-                                      "Royal Flush"))
+            p2_top = st.selectbox("Player 2 Top Hand", tuple(top_vals_dict), key=25)
+            p2_middle = st.selectbox("Player 2 Middle Hand", tuple(middle_vals_dict), key=26)
+            p2_bottom = st.selectbox("Player 2 Bottom Hand", tuple(bottom_vals_dict), key=27)
 
         player_hands = [p1_top, p1_middle, p1_bottom, p2_top, p2_middle, p2_bottom]
+        st.button(label="Calculate Royalties", key=30, on_click=(print(player_hands)))
         return player_hands
 
