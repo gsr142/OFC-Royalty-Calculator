@@ -34,7 +34,7 @@ class HandVals:
         for i in range(len(values)):
             for j in range(i + 1, len(values)):
                 if values[i] < values[j]:
-                    payouts += f"{keys[i]} owes {values[j] - values[i]} to {keys[j]}.\n "
+                    payouts += f"{keys[i]} owes {values[j] - values[i]} to {keys[j]}. "
                 elif values[i] > values[j]:
                     payouts += f"{keys[j]} owes {values[i] - values[j]} to {keys[i]}. "
                 else:
@@ -182,7 +182,7 @@ class Calculate(HandVals):
         player_points_dict_top = dict(zip(players, player_vals_top))
         player_points_dict_middle = dict(zip(players, player_vals_middle))
         player_points_dict_bottom = dict(zip(players, player_vals_bottom))
-
+        print(player_points_dict_top)
         if st.button(label="Calculate Royalties"):
             #Compares all top hands and returns royalty payments for each player
             st.write(f"Top Hand: {HandVals.compare_dict_values(self, player_points_dict_top)}")
